@@ -1,0 +1,84 @@
+version: 2
+
+models:
+  - name: stg_mock_data__samples
+    description: Samples collected from the potion making process.
+    columns:
+      - name: sample_id
+        description: Unique identifier for each sample.
+        tests:
+          - unique
+          - not_null
+      - name: sample_type
+        description: >
+          Identifies the point in the potion making process from which the
+          sample was taken.
+        tests:
+          - accepted_values:
+              values: [1, 2, 3]
+      - name: collected_at
+        description: Time at which the sample was collected.
+        tests:
+          - not_null
+      - name: volume_ml
+        description: Sample volume in mL.
+        tests:
+          - not_null
+  - name: stg_mock_data__shipments
+    description: Shipments of samples sent to external labs.
+    columns:
+      - name: sample_id
+        description: Unique identifier for each sample.
+        tests:
+          - unique
+          - not_null
+      - name: shipped_at
+        description: >
+          Time at which the sample was shipped to an external lab.
+        tests:
+          - not_null
+      - name: lab_name
+        description: Name of the external lab.
+        tests:
+          - accepted_values:
+              values: ["Enchanted Industries", "Toadstool Labs"]
+  - name: stg_mock_data__enchanted_industries_results
+    description: Contains enchanted industries results.
+    columns:
+      - name: resulted_at
+        description: Time at which the sample was resulted.
+        tests:
+          - not_null
+      - name: external_sample_id
+        description: >
+          Unique identifier assigned by the external lab to each sample.
+      - name: sample_id
+        description: Unique internal identifier for each sample.
+      - name: external_result_type
+        description: >
+          Code used by the external lab to identify the analysis performed.
+        tests:
+          - accepted_values:
+              values: ["ID01-FD", "ID02-SV", "ID03-MB"]
+      - name: result_value_ppm
+        description: Material concentration in ppm.
+        tests:
+          - not_null
+  - name: stg_mock_data__toadstool_labs_results
+    description: Containes toadstool labs results.
+    columns:
+      - name: external_sample_id
+        description: >
+          Unique identifier assigned by the external lab to each sample.
+      - name: sample_id
+        description: Unique internal identifier for each sample.
+      - name: external_result_type
+        description: >
+          Code used by the external lab to identify the analysis performed.
+        tests:
+          - accepted_values:
+              values: ["FRDST", "SNKVM", "MGBRY"]
+      - name: result_value_ppm
+        description: Material concentration in ppm.
+        tests:
+          - not_null

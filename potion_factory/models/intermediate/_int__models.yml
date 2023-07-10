@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: int_enchanted_industries_results_mapped
+    description: >
+      Maps external result types to internal result types for Enchanted
+      Industries.
+    columns:
+      - name: sample_id
+        type: BIGINT
+        description: Unique identifier for each sample.
+      - name: result_type
+        type: VARCHAR
+        description: Code used internally to identify the analysis performed.
+        tests:
+          - accepted_values:
+              values: ["FAIRY_DUST", "SNAKE_VENOM", "MAGIC_BERRIES"]
+      - name: result_value_ppm
+        type: BIGINT
+        description: Material concentration in ppm.
+      - name: lab_name
+        type: VARCHAR
+        description: Name of the external lab.
+      - name: external_sample_id
+        type: VARCHAR
+        description: >
+          Unique identifier assigned by the external lab to each sample.
+      - name: resulted_at
+        type: TIMESTAMP
+        description: Time at which the sample was resulted.
+  - name: int_toadstool_labs_resuts_mapped
+    description: >
+      Maps external result types to internal result types for Toadstool Labs.
+    columns:
+      - name: sample_id
+        type: BIGINT
+        description: Unique identifier for each sample.
+      - name: result_type
+        type: VARCHAR
+        description: Code used internally to identify the analysis performed.
+        tests:
+          - accepted_values:
+              values: ["FAIRY_DUST", "SNAKE_VENOM", "MAGIC_BERRIES"]
+      - name: result_value_ppm
+        type: BIGINT
+        description: Material concentration in ppm.
+      - name: lab_name
+        type: VARCHAR
+        description: Name of the external lab.
+      - name: external_sample_id
+        type: VARCHAR
+        description: >
+          Unique identifier assigned by the external lab to each sample.
+      - name: resulted_at
+        type: TIMESTAMP
+        description: Time at which the sample was resulted.

@@ -1,0 +1,96 @@
+version: 2
+
+sources:
+  - name: mock_data
+    description: Directory containing mock data in `.csv` files.
+    meta:
+      external_location: "../mock_data/{name}.csv"
+    tables:
+      - name: samples
+        description: Samples collected from the potion making process.
+        columns:
+          - name: sample_id
+            type: BIGINT
+            description: Unique identifier for each sample.
+            tests:
+              - unique
+              - not_null
+          - name: sample_type
+            type: BIGINT
+            description: >
+              Identifies the point in the potion making process from which the
+              sample was taken.
+            tests:
+              - accepted_values:
+                  values: [1, 2, 3]
+          - name: collected_at
+            type: TIMESTAMP
+            description: Time at which the sample was collected.
+            tests:
+              - not_null
+          - name: volume_ml
+            type: BIGINT
+            description: Sample volume in mL.
+            tests:
+              - not_null
+      - name: shipments
+        description: Shipments of samples sent to external labs.
+        columns:
+          - name: sample_id
+            type: BIGINT
+            description: Unique identifier for each sample.
+            tests:
+              - unique
+              - not_null
+          - name: shipped_at
+            type: TIMESTAMP
+            description: >
+              Time at which the sample was shipped to an external lab.
+            tests:
+              - not_null
+          - name: lab_name
+            type: VARCHAR
+            description: Name of the external lab.
+            tests:
+              - accepted_values:
+                  values: ["Enchanted Industries", "Toadstool Labs"]
+      - name: enchanted_industries_results
+        description: Raw results from Enchanted Industries.
+        columns:
+          - name: resultat
+            type: TIMESTAMP
+            description: Time at which the sample was resulted.
+          - name: specid
+            type: VARCHAR
+            description: >
+              Unique identifier assigned by the external lab to each sample.
+          - name: extid
+            type: BIGINT
+            description: Unique internal identifier for each sample.
+          - name: analysis
+            type: VARCHAR
+            description: >
+              Code used by the external lab to identify the analysis performed.
+          - name: valueppm
+            type: BIGINT
+            description: Material concentration in ppm.
+      - name: toadstool_labs_results
+        description: Raw results from Toadstool Labs.
+        columns:
+          - name: internal_specimen_id
+            type: BIGINT
+            description: >
+              Unique identifier assigned by the external lab to each sample.
+          - name: external_specimen_id
+            type: BIGINT
+            description: Unique internal identifier for each sample.
+          - name: result_time
+            type: TIMESTAMP
+            description: Time at which the sample was resulted.
+          - name: test_type
+            type: VARCHAR
+            description: >
+              Code used by the external lab to identify the analysis performed.
+          - name: result_value
+            type: BIGINT
+            description: Material concentration in ppm.

@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: potion_composition_hourly_average
+    description: >
+      Average concentrations of fairy dust, snake venom, and magic berries in
+      the potion. Samples are taken from sample point 3, and results are
+      are bucketed into one-hour intervals.
+    columns:
+      - name: sample_hour
+        description: One-hour interval over which results were averaged.
+        tests:
+          - not_null
+      - name: sample_count
+        description: Number of samples included in the average.
+      - name: fairy_dust_ppm
+        description: Average fairy dust concentration in ppm.
+      - name: magic_berries_ppm
+        description: Average magic berries concentration in ppm.
+      - name: snake_venom_ppm
+        description: Average snake venom concentration in ppm.
+  - name: turnaround_days_average_by_lab
+    description: >
+      Report on the average number of days it takes for each lab to submit their
+      results after receiving a shipment of samples.
+    columns:
+      - name: lab_name
+        description: Name of the external lab.
+        tests:
+          - accepted_values:
+              values: ["Enchanted Industries", "Toadstool Labs"]
+      - name: average_turnaround_days
+        description: >
+          Average number of days from when the lab receives a sample to when
+          they submit a result.
