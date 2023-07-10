@@ -1,0 +1,7 @@
+potion_factory:
+  outputs:
+   dev:
+     type: duckdb
+     path: "{{ env_var('DB_FILE', ':memory:') }}"
+  target: dev
+  

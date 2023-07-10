@@ -1,0 +1,27 @@
+version: 2
+
+seeds:
+  - name: enchanted_industries_result_map
+    description: >
+      Mapping of external result types to internal result types for Enchanted
+      Industries.
+    columns:
+      - name: external_result_type
+        type: VARCHAR
+        description: >
+          Code used by the external lab to identify the analysis performed.
+      - name: internal_result_type
+        type: VARCHAR
+        description: Code used internally to identify the analysis performed.
+  - name: toadstool_labs_result_map
+    description: >
+      Mapping of external result types to internal result types for Toadstool
+      Labs.
+    columns:
+      - name: external_result_type
+        type: VARCHAR
+        description: >
+          Code used by the external lab to identify the analysis performed.
+      - name: internal_result_type
+        type: VARCHAR
+        description: Code used internally to identify the analysis performed.
