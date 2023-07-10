@@ -17,6 +17,11 @@ models:
         description: Material concentration in ppm.
         tests:
           - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 1500
+              config:
+                severity: warn
       - name: lab_name
         description: Name of the external lab.
         tests:

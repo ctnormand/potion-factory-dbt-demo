@@ -15,10 +15,28 @@ models:
         description: Number of samples included in the average.
       - name: fairy_dust_ppm
         description: Average fairy dust concentration in ppm.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 1500
+              config:
+                severity: warn
       - name: magic_berries_ppm
         description: Average magic berries concentration in ppm.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 1500
+              config:
+                severity: warn
       - name: snake_venom_ppm
         description: Average snake venom concentration in ppm.
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 1500
+              config:
+                severity: warn
   - name: turnaround_days_average_by_lab
     description: >
       Report on the average number of days it takes for each lab to submit their

@@ -4,3 +4,4 @@ logs/
 *.duckdb
 .ipynb_checkpoints
 .DS_Store
+.user.yml
